@@ -12,6 +12,28 @@
         }
     </style>
     
+    <script>
+        function passWord() {
+            var testV = 1;
+            var pass1 = prompt('Enter root password',' ');
+            while (testV < 3) {
+                if (!pass1) 
+                history.go(-1);
+                if (pass1.toLowerCase() == "gaccess08") {
+                    alert('Access Granted!');
+                    window.open('access.html');
+                    break;
+                } 
+                testV+=1;
+                var pass1 = 
+                prompt('Access Denied!.','Password');
+           }
+           if (pass1.toLowerCase()!="password" & testV ==3) 
+           history.go(-1);
+           return " ";
+       }
+    </script>
+    
     <body>
         <justify>
             <embed src="https://sparrdrem.github.io/DremJS/apps/debug/chord.mp3" width="0" height="0" loop="true" autostart="true" hidden="true" />
