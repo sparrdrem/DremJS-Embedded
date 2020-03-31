@@ -1,45 +1,155 @@
 <html>
-    <!-- classes were from SparrOS Developer Team -->
-  <title>DremJS</title>
 	<head>
-<script src="jquery/jquery-3.3.1.min.js"></script>
-<script>
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =
-    h + ":" + m;
-    var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-</script>
-	</head>
-	<embed src="startup.mp3" width="0" height="0" loop="true" autostart="true" hidden="true" />
-    <style>
-    .start {
-      position: absolute;
-      left: 0px;
-      bottom: 0px;
-    }
-    .astart {
-      position: absolute;
-      left: 0px;
-      bottom: 50px;
-      }
-    .cwhite {
-      color: white;
-      }
-  </style>
-  <body onload="startTime();">
-	  <div id="txt"></div>
-	  <iframe src="index-closed.html" style="height:580px;width:1200px"></iframe>
-	  <a href="index2.html"><button>Home</button>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+		<!-- classes were from SparrOS Developer Team -->
+    		<title>DremJS</title>
+      <!--<embed src="mopen.mp3" width="0" height="0" loop="false" autostart="true" hidden="true" />
+      <audio loop autoplay>
+		Aw fiddle sticks. What now? (ERROR: 1040-0001)
+		Your browser doesn't support the AUDIO tag! Get a newer browser or update it
+		<source src="ambient.mp3" type="audio/mp3">
+	</audio>-->
+    		<style>
+      			.framewrap {
+        			width:500px;
+        			height:300px;
+    				padding:10px;
+        			position: fixed;
+        			top: 50px;
+        			left: 10px;
+        			background-color:#87CEEB;
+      			}
+      			.appFrame {
+        			width:99%;
+        			height:93%;
+    				background-color:#FFFFFF;
+      			}
+      			.cwhite {
+        			color: white;
+     			}
+      			.br1 {
+        			position: absolute;
+        			bottom: 8px;
+        			right: 16px;
+        			font-size: 12px;
+      			}
+      			.br2 {
+        			position: absolute;
+        			bottom: 22px;
+        			right: 16px;
+        			font-size: 12px;
+      			}
+      			.br3 {
+        			position: absolute;
+        			bottom: 36px;
+        			right: 16px;
+        			font-size: 12px;
+      			}
+      			html { 
+        			background: url(DremJS-Background.png) no-repeat center center fixed; 
+        			-webkit-background-size: cover;
+        			-moz-background-size: cover;
+        			-o-background-size: cover;
+        			background-size: cover;
+      			}
+				body {
+					font-family: Calibri;
+				}
+			a:link {
+        			color: black;
+				text-decoration: none;
+      			}
+      			a:visited {
+				color: black;
+				text-decoration: none;
+      			}
+      			.cent {
+        			position: relative;
+				    top: 4px;
+                }
+      			.taskbar {
+                    background-color: black;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 100%;
+					/*z-index: 20000;*/
+                }
+                .taskbarTime {
+                    height: 42px;
+                    float: left;
+                }
+                .taskbarApps {
+                    text-align: center;
+                    float: left;
+                    margin-left: 5px;
+                    margin-top: 2px;
+                }
+				.startbtn {
+					background-color: gray;
+					color: black;
+					padding: 12px;
+					font-size: 16px;
+					border: none;
+					z-index: 30000;
+				}
+				.start-content {
+					display: none;
+  					position: absolute;
+					right:0px;
+  					background-color: #f9f9f9;
+  					min-width: 200px;
+  					box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  					padding: 12px 16px;
+  					z-index: 30000;
+				}
+				.start {
+					position: absolute;
+					display: inline-block;
+					top:0px;
+					right:0px;
+					z-index:30000;
+				}
+				.start-content a:hover {background-color: #ccc}
+				.start:hover .start-content {
+					display: block;
+				}
+				.start:hover .startbtn {
+					background-color: gray;
+				}
+		</style>
+  	</head>
+  	<body onload="initAgendaWM()">
+   		<p class="cwhite br2">DremJS Embedded Version 0.1.5b</p>
+   		<p class="cwhite br1">&copy; Innovation Inc.</p>
+		   
+		<div class="start">
+			<button class="startbtn">Start</button>
+			<div class="start-content">
+				<a onclick="openApplication('About', 800, 500, 'about.png')"><p><img src="apps/About/about.png" align="top"> About DremJS</p></a>
+				<a onclick="openApplication('debug', 700, 450, 'debug.png')"><p><img src="apps/debug/debug.png" align="top"> Report a Bug</p></a>
+				<a onclick="openApplication('terminal', 700, 450, 'terminal.png')"><p><img src="apps/terminal/terminal.png" align="top" width="16" height="16"> Terminal</p></a>
+				<hr />
+				<a target="_top" href="shuttingdown.html"><p><img src="shutdown.png" align="top" style="width:16px;height:16px;"> Shutdown DremJS</p>				
+			</div>
+		</div>
+   		<div id="appContainer">
+        <!-- This is the taskbar -->
+        <div id="taskbar" class="taskbar">
+            <div id="taskbarTime" class="taskbarTime">
+                <!-- Add apps here -->
+                <div class="cwhite" style="text-align:left" id="txt"></div> <a onclick="openApplication('About', 800, 500, 'about.png')"><img src="apps/About/about.png"> |</a>
+                </div>
+                <div id="taskbarApps" class="taskbarApps">
+            
+                </div>
+        </div>
+    </div>
+    <script src="agenda-wm.js"></script> 
+    <script>
+        console.log("tomato");
+    </script>
 	</body>
 </html>
