@@ -5,12 +5,6 @@
 		<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
 		<!-- classes were from SparrOS Developer Team -->
     		<title>DremJS</title>
-      <!--<embed src="mopen.mp3" width="0" height="0" loop="false" autostart="true" hidden="true" />
-      <audio loop autoplay>
-		Aw fiddle sticks. What now? (ERROR: 1040-0001)
-		Your browser doesn't support the AUDIO tag! Get a newer browser or update it
-		<source src="ambient.mp3" type="audio/mp3">
-	</audio>-->
     		<style>
       			.framewrap {
         			width:500px;
@@ -20,6 +14,7 @@
         			top: 50px;
         			left: 10px;
         			background-color:#87CEEB;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       			}
       			.appFrame {
         			width:99%;
@@ -88,9 +83,9 @@
                     margin-top: 2px;
                 }
 				.startbtn {
-					background-color: gray;
+					background-color: transparent;
 					color: black;
-					padding: 12px;
+					padding: 8px; // Bad way of doing this but that's a problem for future Sam
 					font-size: 16px;
 					border: none;
 					z-index: 30000;
@@ -122,15 +117,17 @@
 		</style>
   	</head>
   	<body onload="initAgendaWM()">
-   		<p class="cwhite br2">DremJS Embedded Version 0.1.5b</p>
+   		<p class="cwhite br2">DremJS Embedded Version 0.1.6b</p>
    		<p class="cwhite br1">&copy; Innovation Inc.</p>
 		   
 		<div class="start">
-			<button class="startbtn">Start</button>
+			<button class="startbtn"><img src="logo.png" style="width:24px;height24px;"></button>
 			<div class="start-content">
-				<a onclick="openApplication('About', 800, 500, 'about.png')"><p><img src="apps/About/about.png" align="top"> About DremJS</p></a>
+				<a onclick="openApplication('about', 800, 500, 'about.png')"><p><img src="apps/about/about.png" align="top"> About DremJS</p></a>
 				<a onclick="openApplication('debug', 700, 450, 'debug.png')"><p><img src="apps/debug/debug.png" align="top"> Report a Bug</p></a>
 				<a onclick="openApplication('terminal', 700, 450, 'terminal.png')"><p><img src="apps/terminal/terminal.png" align="top" width="16" height="16"> Terminal</p></a>
+                 		<a onclick="openApplication('serverstatus', '300', '300', 'serverstatus.png')"><p><img src="apps/serverstatus/serverstatus.png" align="top" style="width:16px;height:16px;"> Server Status</p></a>
+				<a onclick="openApplication('widgets-settings', -1, -1, 'widgets-settings.png')"><p><img src="apps/widgets-settings/widgets-settings.png" align="top" style="width:16px;height:16px"> Widgets Settings</p></a>
 				<hr />
 				<a target="_top" href="shuttingdown.html"><p><img src="shutdown.png" align="top" style="width:16px;height:16px;"> Shutdown DremJS</p>				
 			</div>
@@ -140,7 +137,7 @@
         <div id="taskbar" class="taskbar">
             <div id="taskbarTime" class="taskbarTime">
                 <!-- Add apps here -->
-                <div class="cwhite" style="text-align:left" id="txt"></div> <a onclick="openApplication('About', 800, 500, 'about.png')"><img src="apps/About/about.png"> |</a>
+                <div class="cwhite" style="text-align:left" id="txt"></div> <a onclick="openApplication('about', 800, 500, 'about.png')"><img src="apps/about/about.png"> |</a>
                 </div>
                 <div id="taskbarApps" class="taskbarApps">
             
@@ -148,8 +145,5 @@
         </div>
     </div>
     <script src="agenda-wm.js"></script> 
-    <script>
-        console.log("tomato");
-    </script>
 	</body>
 </html>
